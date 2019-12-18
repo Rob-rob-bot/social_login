@@ -83,7 +83,7 @@ class FacebookHandler(context: Context, socialConfigOwner: SocialConfigOwner) {
                     callback(
                         SocialUser(
                             jsonObject.getString(ME_REQUEST_RESPONSE_ID),
-                            jsonObject.getString(ME_REQUEST_RESPONSE_EMAIL),
+                            jsonObject.getString(ME_REQUEST_RESPONSE_EMAIL).orEmpty(),
                             jsonObject.getString(ME_REQUEST_RESPONSE_NAME),
                             getProfilePicture(jsonObject),
                             mapOf(Constants.FACEBOOK_TOKEN to accessToken.token)
