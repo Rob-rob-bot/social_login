@@ -82,9 +82,9 @@ class FacebookHandler(context: Context, socialConfigOwner: SocialConfigOwner) {
                 } ?: run {
                     callback(
                         SocialUser(
-                            jsonObject.getString(ME_REQUEST_RESPONSE_ID),
-                            jsonObject.getString(ME_REQUEST_RESPONSE_EMAIL).orEmpty(),
-                            jsonObject.getString(ME_REQUEST_RESPONSE_NAME),
+                            if (jsonObject.has(ME_REQUEST_RESPONSE_ID)) jsonObject.getString(ME_REQUEST_RESPONSE_ID) else "",
+                            if (jsonObject.has(ME_REQUEST_RESPONSE_EMAIL)) jsonObject.getString(ME_REQUEST_RESPONSE_EMAIL).orEmpty() else "",
+                            if (jsonObject.has(ME_REQUEST_RESPONSE_EMAIL)) jsonObject.getString(ME_REQUEST_RESPONSE_NAME) else "",
                             getProfilePicture(jsonObject),
                             mapOf(Constants.FACEBOOK_TOKEN to accessToken.token)
                         ),
